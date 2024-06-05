@@ -21,11 +21,15 @@ ws1 = ws1 * pi;
 ws2 = 2*fs2/fs;
 ws2 = ws2 * pi;
 
+fc = 100e3; %arbitrary
+wc = fc*pi/(fs/2); %arbitrary
+
+
 %Values
 bits = 13
 order = 10
 
-wc = 0.1 *pi; %arbitrary
+
 lambda=(cos((wp2+wp1)/2))/(cos((wp2-wp1)/2));
 
 %% BandStop
@@ -60,11 +64,9 @@ k = omega_p/omega_s;
 k1 = epsilon/(sqrt(A^2-1));
 k1 = k1(1);
 min_order = acosh(1/k1)/acosh(1/k); 
-min_order = ceil(min_order); %minimum order number to meet Passband Ripple and Attenuation
-max_order = 2*epsilon *2^bits;
-max_order = floor(max_order); %max order to meet bit length given passpand ripple
+min_order = ceil(min_order) %minimum order number to meet Passband Ripple and Attenuation
 
-fc = 100e3; %arbitrary
+
 wt = [wp1/pi wp2/pi];
 wo = fc/(fs/2);
 
